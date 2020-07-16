@@ -6,3 +6,4 @@
 - [链表(list)](./redis笔记/list.md)
 - [字典(dict)](./redis笔记/dict.md)
 - [跳跃表(skiplist/zset)](./redis笔记/skiplist.md)
+- [压缩链表(ziplist)](./redis笔记/ziplist.md)
