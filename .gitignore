@@ -1,0 +1,5 @@
+*.d
+*.o
+sds_unit_test
+server
+*.idea
