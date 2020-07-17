@@ -1,6 +1,9 @@
 # Redis 6.0.5阅读笔记
 源码包含注释以及.vscode文件。（已配好debug以及部分单元测试的配置）
 
+## 内存管理
+- [zmalloc](./redis笔记/zmalloc.md)
+
 ## 数据结构
 - [字符串(sds)](./redis笔记/sds.md)
 - [链表(list)](./redis笔记/list.md)
