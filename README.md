@@ -7,3 +7,4 @@
 - [字典(dict)](./redis笔记/dict.md)
 - [跳跃表(skiplist/zset)](./redis笔记/skiplist.md)
 - [压缩链表(ziplist)](./redis笔记/ziplist.md)
+- [整型SET集合(intset)](./redis笔记/intset.md)
