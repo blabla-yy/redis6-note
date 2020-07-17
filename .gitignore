@@ -3,3 +3,4 @@
 sds_unit_test
 server
 *.idea
+.DS_Store
