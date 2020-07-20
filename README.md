@@ -11,3 +11,8 @@
 - [跳跃表(skiplist/zset)](./redis笔记/skiplist.md)
 - [压缩链表(ziplist)](./redis笔记/ziplist.md)
 - [整型SET集合(intset)](./redis笔记/intset.md)
+- [quicklist](./redis笔记/quicklist.md)
+
+
+## C语言
+- [C语言编程技巧](./redis笔记/c语言的技巧.md)

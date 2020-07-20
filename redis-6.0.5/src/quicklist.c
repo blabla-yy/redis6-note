@@ -427,7 +427,7 @@ _quicklistNodeSizeMeetsOptimizationRequirement(const size_t sz,
 
 REDIS_STATIC int _quicklistNodeAllowInsert(const quicklistNode *node,
                                            const int fill, const size_t sz) {
-    if (unlikely(!node))
+    if (unlikely(!node)) // 节点为null，退出
         return 0;
 
     int ziplist_overhead;
@@ -510,17 +510,19 @@ int quicklistPushHead(quicklist *quicklist, void *value, size_t sz) {
  * Returns 1 if new tail created. */
 int quicklistPushTail(quicklist *quicklist, void *value, size_t sz) {
     quicklistNode *orig_tail = quicklist->tail;
+    // 尾节点的ziplist，是否有足够的空间插入新值
+    // 有：插入；没有：新增一个尾节点
     if (likely(
             _quicklistNodeAllowInsert(quicklist->tail, quicklist->fill, sz))) {
         quicklist->tail->zl =
             ziplistPush(quicklist->tail->zl, value, sz, ZIPLIST_TAIL);
-        quicklistNodeUpdateSz(quicklist->tail);
+        quicklistNodeUpdateSz(quicklist->tail); // 更新节点的sz为ziplist的实际大小
     } else {
         quicklistNode *node = quicklistCreateNode();
         node->zl = ziplistPush(ziplistNew(), value, sz, ZIPLIST_TAIL);
 
-        quicklistNodeUpdateSz(node);
-        _quicklistInsertNodeAfter(quicklist, quicklist->tail, node);
+        quicklistNodeUpdateSz(node); // 更新节点的sz为ziplist的实际大小
+        _quicklistInsertNodeAfter(quicklist, quicklist->tail, node); //1. 更新链表节点。2.新节点永远不会压缩，旧节点(旧尾节点)判断是否需要压缩。3. 更新链表记录的长度
     }
     quicklist->count++;
     quicklist->tail->count++;

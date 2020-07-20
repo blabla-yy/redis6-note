@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "__bit_reference": "cpp",
+        "algorithm": "cpp",
+        "array": "cpp",
+        "bitset": "cpp",
+        "ios": "cpp",
+        "ostream": "cpp",
+        "random": "cpp"
+    }
+}

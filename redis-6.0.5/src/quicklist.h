@@ -46,7 +46,7 @@
 typedef struct quicklistNode {
     struct quicklistNode *prev;
     struct quicklistNode *next;
-    unsigned char *zl;
+    unsigned char *zl;           // ziplist的实际数据
     unsigned int sz;             /* ziplist size in bytes */
     unsigned int count : 16;     /* count of items in ziplist */
     unsigned int encoding : 2;   /* RAW==1 or LZF==2 */
@@ -105,10 +105,10 @@ typedef struct quicklistBookmark {
 typedef struct quicklist {
     quicklistNode *head;
     quicklistNode *tail;
-    unsigned long count;        /* total count of all entries in all ziplists */
-    unsigned long len;          /* number of quicklistNodes */
-    int fill : QL_FILL_BITS;              /* fill factor for individual nodes */
-    unsigned int compress : QL_COMP_BITS; /* depth of end nodes not to compress;0=off */
+    unsigned long count;    // 总元素数（包含了ziplist）/* total count of all entries in all ziplists */ 
+    unsigned long len;      // quicklist的长度        /* number of quicklistNodes */  
+    int fill : QL_FILL_BITS;// 每个节点最多包含的数据长度（负数为字节限制，正数为元素长度）              /* fill factor for individual nodes */
+    unsigned int compress : QL_COMP_BITS;   // 双端有n个节点不压缩 /* depth of end nodes not to compress;0=off */
     unsigned int bookmark_count: QL_BM_BITS;
     quicklistBookmark bookmarks[];
 } quicklist;
